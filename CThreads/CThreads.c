@@ -1,39 +1,43 @@
 // CThreads.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
+//Resourse link for process threads Api is down below
+// https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createthread
+//#include <iostream> i dont need iostream since i am utilizing C (will try to make it work in C++ eventually)
 
-//#include <iostream>
 #include <stdio.h>
 #include<Windows.h>
 
-volatile int globalCounter = 0;
-const int limit = 100000000;
+volatile int globalCounter = 0; //My loop start number
+const int limit = 100000000; //My Loop end number
 
-CRITICAL_SECTION semapthorXXX;
-
+CRITICAL_SECTION semapthorXXX; //Declaring the semapthorxxx as a critical Section
+//
 void* func(void* var)
 {
     DWORD threadID = GetCurrentThreadId();
 
-    while (globalCounter < limit)
+    while (globalCounter < limit) //Perform until it's the same amount
     {
-        Sleep(2);
+        Sleep(2); //Not required but just keept for testing
 
-        EnterCriticalSection(&semapthorXXX);
-        globalCounter++;
+        EnterCriticalSection(&semapthorXXX); //this helps keep manage and synqronize my threads 
+        //Along with LeveCriticalSection which keeps them in synq
+        globalCounter++; //Increases my starter int by 1
 
         printf("[%6i], Counter: %i\n", threadID, globalCounter);
         LeaveCriticalSection(&semapthorXXX);  
     }
-    return NULL;
+    return NULL; //We want nothing returned once the program is finished so we tell it to return
+    // nothing when done.
 }
 
-int main()
+int main() //My main function
 {
-    InitializeCriticalSection(&semapthorXXX);
+    InitializeCriticalSection(&semapthorXXX); //Initializing my section
 
     for (size_t i = 0; i < 50; i++)
     {
-        CreateThread
+        CreateThread //Creates our thread 
         (
             NULL,
             NULL,
@@ -44,14 +48,10 @@ int main()
         );
     }
 
-  
-  
-
-    //std::cout << "Hello World!\n";
     while (1)
     {
     }
-    return 1;
+    return 1; //The return code to end the program
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
