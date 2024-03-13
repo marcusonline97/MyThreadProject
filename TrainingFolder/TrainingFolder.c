@@ -2,12 +2,30 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
+#include <conio.h>
+
+#define WIDTH 40
+#define HEIGHT 40
+#define PACMAN 'C'
+#define WALL '*'
+#define FOOD '.' 
+#define EMPTY ' ' 
+#define DEMON 'X' 
+
+//Adding global variables
+
+int res = 0;
+int score = 0;
+int pacman_x, pacman_y;
+char board[HEIGHT][WIDTH];
 
 typedef struct Map_
 {
 	float xAxis;
 	float yAxis;
+	
 }Map;
 
 typedef struct Player_
