@@ -2,31 +2,42 @@
 //
 
 #include <stdio.h>
-#include <string.h>
-int main()
+#include <stdbool.h>
+
+typedef struct Map_
 {
-	char name[25]; //Bytes
+	float xAxis;
+	float yAxis;
+}Map;
 
-	int age;
+typedef struct Player_
+{
+	int Lives;
 
-	printf("\n What's your name?");
+	bool playerAlive;
+}Player;
 
-	fgets(name, 25, stdin);
-	name[strlen(name) - 1] = '\0';
-
-	printf("How old are you");
-	scanf("%d", &age);
-
-
+void MapCreation(Map* map)
+{
+	map->xAxis = 12;
+	map->yAxis = 12;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void PlayerCreate(Player* player)
+{
+	player->Lives = 3;
+	player->playerAlive = true;
+}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+
+int main()
+{
+	return 0;
+}
+
+void PlayerBanana(void)
+{
+	int lives = 3;
+
+	int death = 1;
+}

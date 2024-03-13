@@ -24,6 +24,7 @@
     <ProjectGuid>{25d7cb52-3dfb-4e17-bb34-df87f9965732}</ProjectGuid>
     <RootNamespace>TrainingFolder</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>MyCTrainingFolder</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

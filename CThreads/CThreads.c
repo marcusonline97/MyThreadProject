@@ -10,7 +10,7 @@
 volatile int globalCounter = 0; //My loop start number
 const int limit = 100000000; //My Loop end number
 
-CRITICAL_SECTION semapthorXXX; //Declaring the semapthorxxx as a critical Section
+CRITICAL_SECTION semapthor; //Declaring the semapthorxxx as a critical Section
 //
 void* func(void* var)
 {
@@ -18,23 +18,21 @@ void* func(void* var)
 
     while (globalCounter < limit) //Perform until it's the same amount
     {
-        Sleep(2); //Not required but just keept for testing
-
-        EnterCriticalSection(&semapthorXXX); //this helps keep manage and synqronize my threads 
+        Sleep(2); 
+        EnterCriticalSection(&semapthor); //this helps keep manage and synqronize my threads 
         //Along with LeveCriticalSection which keeps them in synq
         globalCounter++; //Increases my starter int by 1
 
         printf("[%6i], Counter: %i\n", threadID, globalCounter);
-        LeaveCriticalSection(&semapthorXXX);  
+        LeaveCriticalSection(&semapthor);  
     }
     return NULL; //We want nothing returned once the program is finished so we tell it to return
     // nothing when done.
 }
 
-int main() //My main function
+int main() 
 {
-    InitializeCriticalSection(&semapthorXXX); //Initializing my section
-
+    InitializeCriticalSection(&semapthor); 
     for (size_t i = 0; i < 50; i++)
     {
         CreateThread //Creates our thread 
@@ -53,14 +51,3 @@ int main() //My main function
     }
     return 1; //The return code to end the program
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
